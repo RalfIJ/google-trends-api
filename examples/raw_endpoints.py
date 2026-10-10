@@ -20,7 +20,7 @@ def google_json(text):
 
 s = requests.Session()
 s.headers["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Safari/537.36"
-s.get("https://trends.google.com/trends/explore?geo=US")  # sets the NID cookie, even when it answers 429
+s.get("https://trends.google.com/trends/")  # sets the NID cookie the API calls need
 
 req = {"comparisonItem": [{"keyword": "matcha", "geo": "US", "time": "today 12-m"}], "category": 0, "property": ""}
 r = s.get("https://trends.google.com/trends/api/explore", params={"hl": "en-US", "tz": 0, "req": json.dumps(req)})

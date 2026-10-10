@@ -1,10 +1,10 @@
 # Google Trends API for Python (a pytrends alternative)
 
-Get Google Trends data into Python: interest over time, interest by region, top and rising related searches, and simple trend metrics. You can also **compare more than 5 keywords on one scale**, which the Google Trends website doesn't allow.
+Get Google Trends data into Python: interest over time, interest by region, top and rising related searches, and simple trend metrics. You can also **compare 10, 50 or 100+ keywords on one scale**. The Google Trends website stops at 8 (5 in classic Explore).
 
 [pytrends](https://github.com/GeneralMills/pytrends) was archived in April 2025 and often fails with `429 Too Many Requests`. Google announced an official Trends API in July 2025, but it is an alpha with limited, application-based access. These examples use a hosted scraper instead, the [Google Trends Scraper](https://apify.com/ralfij/google-trends-scraper) on Apify, which deals with Google's session cookies and rate limits for you.
 
-**Tutorial:** [Google Trends in Python without pytrends, and how to compare more than 5 keywords](docs/google-trends-python-without-pytrends.md). It covers the two endpoints behind the website, the trick for linking comparisons, and what the data looks like.
+**Tutorial:** [Google Trends in Python without pytrends, and how to compare more keywords than Google allows](docs/google-trends-python-without-pytrends.md). It covers the two endpoints behind the website, the trick for linking comparisons, and what the data looks like.
 
 ![Google searches for programming languages over 5 years](docs/programming-languages-5y.png)
 
@@ -51,9 +51,9 @@ python           15.8     34.3  falling (-43.7%)
 - `busiestMonth` for periods of about a year or longer
 - `shareOfSearch` when you compare keywords on one shared scale
 
-## How comparing more than 5 keywords works
+## How comparing many keywords works
 
-Google compares at most 5 keywords per request and scales each request so its highest point is 100. To compare more, the scraper:
+Google's Trends API compares at most 5 keywords per request (the website shows up to 8) and scales each request so its highest point is 100. To compare more, the scraper:
 
 1. requests the keywords in groups of 5;
 2. compares the most searched keyword of each group (the group "leader") with the other leaders, 5 at a time with one leader of overlap, so any number of groups can be chained;

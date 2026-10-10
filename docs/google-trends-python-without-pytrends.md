@@ -1,4 +1,4 @@
-# Google Trends in Python without pytrends (and comparing more than 5 keywords)
+# Google Trends in Python without pytrends (and comparing more keywords than Google allows)
 
 I wanted one simple chart: how much do people google the big programming languages now, compared with a few years ago? Ten languages, five years, one chart.
 
@@ -6,7 +6,7 @@ That turned out to be harder than it sounds, for two reasons.
 
 **pytrends is gone.** The library most tutorials use was archived in April 2025. Install it today and the first request often fails with `429 Too Many Requests`, and nobody is merging fixes anymore. Google did announce an official Trends API in July 2025, but it's an alpha you have to apply for.
 
-**Google Trends compares at most 5 keywords at a time.** And every comparison is scaled so that its own peak is 100, so you can't just glue two comparisons together.
+**Google Trends compares only a few keywords at a time:** up to 8 on the website (5 in classic Explore), and 5 per request in the data API underneath. And every comparison is scaled so that its own peak is 100, so you can't just glue two comparisons together.
 
 Here's how I got around both, and the result, which surprised me.
 
@@ -32,7 +32,7 @@ def google_json(text):
 
 s = requests.Session()
 s.headers["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Safari/537.36"
-s.get("https://trends.google.com/trends/explore?geo=US")  # sets the NID cookie, even when it answers 429
+s.get("https://trends.google.com/trends/")  # sets the NID cookie the API calls need
 
 req = {"comparisonItem": [{"keyword": "matcha", "geo": "US", "time": "today 12-m"}], "category": 0, "property": ""}
 r = s.get("https://trends.google.com/trends/api/explore", params={"hl": "en-US", "tz": 0, "req": json.dumps(req)})
@@ -53,7 +53,7 @@ That's fine for a handful of keywords. It gets harder when you need more:
 - Google rate-limits per IP, and fairly quickly. For anything regular you need rotating IPs and retries.
 - Each request takes at most 5 keywords, and each request is scaled on its own.
 
-## Comparing more than 5 keywords on one scale
+## Comparing any number of keywords on one scale
 
 The trick is to link the comparisons through shared keywords:
 

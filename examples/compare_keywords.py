@@ -1,6 +1,6 @@
 """Compare any number of keywords on one Google Trends scale.
 
-The Google Trends website compares at most 5 keywords at a time. This example puts
+The Google Trends website compares at most 8 keywords at a time (5 in classic Explore). This example puts
 10 programming languages on one shared 0-100 scale and prints each one's share of search.
 
     pip install apify-client
