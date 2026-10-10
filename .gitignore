@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+# files the examples write
+compare_keywords.csv
+keyword_report.json
+trends.png
