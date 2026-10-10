@@ -4,6 +4,8 @@ Get Google Trends data into Python: interest over time, interest by region, top 
 
 [pytrends](https://github.com/GeneralMills/pytrends) was archived in April 2025 and often fails with `429 Too Many Requests`. Google announced an official Trends API in July 2025, but it is an alpha with limited, application-based access. These examples use a hosted scraper instead, the [Google Trends Scraper](https://apify.com/ralfij/google-trends-scraper) on Apify, which deals with Google's session cookies and rate limits for you.
 
+**Tutorial:** [Google Trends in Python without pytrends, and how to compare more than 5 keywords](docs/google-trends-python-without-pytrends.md). It covers the two endpoints behind the website, the trick for linking comparisons, and what the data looks like.
+
 ![Google searches for programming languages over 5 years](docs/programming-languages-5y.png)
 
 *Example output: search interest in the Programming category fell 40-68% for most languages between 2021 and 2026. Made with `examples/compare_keywords.py` and matplotlib.*
