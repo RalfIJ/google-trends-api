@@ -61,6 +61,10 @@ Google's Trends API compares at most 5 keywords per request (the website shows u
 
 Google rounds to whole numbers, so a tiny keyword next to a huge one can still show as 0. Compare keywords of a similar size for the best precision.
 
+## Use it from AI assistants (MCP)
+
+To let Claude, Cursor, VS Code or another MCP client look up Google Trends for you, add this MCP server URL: `https://mcp.apify.com/?tools=ralfij/google-trends-scraper`. Sign in to Apify when the client asks, or send your Apify API token as `Authorization: Bearer <token>`. Runs are billed to your own Apify account.
+
 ## Notes
 
 - I built the Google Trends Scraper used in these examples, so keep that in mind. `raw_endpoints.py` shows how to do it yourself.
